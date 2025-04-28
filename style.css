@@ -1,0 +1,548 @@
+/* --- الإعدادات العامة والخط --- */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+    /* لوحة ألوان أكثر فخامة */
+    --primary-color: #0A2342; /* أزرق داكن (نيفي) */
+    --secondary-color: #B8860B; /* ذهبي داكن / برونزي */
+    --accent-color: #D4AF37; /* ذهبي أفتح للمسات */
+    --light-bg: #f8f9fa; /* رمادي فاتح جداً للخلفيات البديلة */
+    --dark-bg: #0A2342; /* نفس الأزرق الداكن للخلفيات الغامقة */
+    --text-color: #333333; /* رمادي داكن للنصوص */
+    --text-color-light: #f1f1f1; /* أبيض مائل للرمادي للنصوص على خلفيات داكنة */
+    --border-color: #dee2e6; /* لون للحدود الخفيفة */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* لون الظل */
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+    color: var(--text-color);
+    background-color: #fff;
+    line-height: 1.8; /* زيادة المسافة بين السطور */
+    font-size: 16px; /* حجم الخط الأساسي */
+}
+
+.container {
+    width: 90%;
+    max-width: 1140px; /* عرض أكبر قليلاً للمحتوى */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* خط أعرض للعناوين */
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem; /* حجم أكبر لعنوان القسم */
+    text-align: center;
+    margin-bottom: 3rem; /* مسافة أكبر أسفل العنوان */
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* خط بسيط أسفل عناوين الأقسام */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color); /* استخدام اللون الذهبي */
+}
+
+
+p {
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+    color: #555; /* لون أفتح قليلاً للنصوص العادية */
+}
+
+a {
+    color: var(--secondary-color); /* اللون الذهبي للروابط */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color); /* لون أفتح عند المرور */
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* إزالة المسافات الزائدة أسفل الصور */
+}
+
+/* --- الهيدر والتنقل --- */
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px var(--shadow-color); /* ظل أكثر نعومة */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.logo .english-name {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.5px; /* تباعد بسيط بين الحروف */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 25px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    font-weight: 600; /* خط أثقل قليلاً */
+    padding: 8px 12px;
+    color: var(--text-color);
+    position: relative; /* للخط السفلي عند المرور */
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after { /* خط يظهر أسفل الرابط عند المرور */
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); /* يبدأ مخفياً */
+    width: 70%;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active /* يمكنك إضافة كلاس active للرابط الحالي */
+ {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    transform: translateX(-50%) scaleX(1); /* يظهر الخط */
+}
+
+
+/* --- قسم الهيرو (الرئيسي) --- */
+.hero-section {
+    /* -- التعديل هنا -- */
+    /* 1. التدرج اللوني (Overlay) يبقى في الأعلى */
+    /* 2. رابط الصورة يوضع بعد الفاصلة ',' */
+    /* 3. تأكد من أن المسار 'images/hero-background.jpg' صحيح */
+    background:
+        /* الطبقة العلوية: التدرج اللوني */
+        linear-gradient(rgba(10, 35, 66, 0.75), rgba(10, 35, 66, 0.7)),
+        /* الطبقة السفلية: الصورة */
+        url('images/hero-background.jpg') no-repeat center center/cover;
+
+    color: #fff;
+    text-align: center;
+    padding: 120px 0; /* مساحة أكبر */
+    min-height: 70vh; /* ارتفاع أكبر */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* ضروري إذا أردت وضع عناصر فوق الخلفية لاحقاً */
+}
+
+/* تنسيقات المحتوى داخل الهيرو */
+.hero-section .container {
+    max-width: 800px; /* تحديد عرض المحتوى في الهيرو */
+    position: relative; /* جعل المحتوى فوق الخلفية */
+    z-index: 2; /* التأكد من أن المحتوى فوق الخلفية */
+}
+
+.hero-section h2 {
+    font-size: 3.5rem; /* عنوان أكبر وأكثر تأثيراً */
+    margin-bottom: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* ظل للنص لجعله أوضح فوق الصورة */
+}
+.hero-section h2::after { display: none; } /* إخفاء الخط السفلي هنا */
+
+.hero-section p {
+    font-size: 1.3rem; /* وصف أكبر */
+    margin-bottom: 2.5rem;
+    color: var(--text-color-light);
+    font-weight: 400;
+    line-height: 1.7;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* ظل خفيف للنص */
+}
+
+/* زر الـ CTA يبقى كما هو */
+.cta-button {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color)); /* تدرج لوني للزر */
+    color: var(--dark-bg); /* لون نص داكن على خلفية ذهبية */
+    padding: 15px 35px; /* زر أكبر */
+    border-radius: 30px; /* حواف دائرية */
+    font-weight: 700; /* خط أعرض */
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    text-decoration: none;
+    color: #fff; /* تغيير لون النص عند المرور */
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color)); /* عكس التدرج */
+    transform: translateY(-3px); /* حركة بسيطة للأعلى */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- أقسام المحتوى --- */
+.content-section {
+    padding: 80px 0; /* زيادة المساحة الرأسية للأقسام */
+}
+
+.content-section.alt-bg {
+    background-color: var(--light-bg); /* استخدام خلفية رمادية فاتحة */
+}
+
+/* --- شبكة الخدمات (تحسين الكروت) --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* زيادة الحد الأدنى لعرض الكارت */
+    gap: 35px; /* زيادة المسافة بين الكروت */
+    margin-top: 3rem;
+}
+
+.service-item {
+    background-color: #fff;
+    padding: 30px; /* زيادة المساحة داخل الكارت */
+    border-radius: 10px; /* حواف أكثر دائرية */
+    text-align: center;
+    border: 1px solid var(--border-color); /* حد خفيف */
+    box-shadow: 0 5px 15px var(--shadow-color); /* ظل أوضح */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* للتحكم بترتيب المحتوى الداخلي */
+    flex-direction: column;
+}
+
+.service-item:hover {
+    transform: translateY(-8px); /* حركة أكبر للأعلى عند المرور */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* ظل أكبر عند المرور */
+    border-color: var(--secondary-color); /* تغيير لون الحد عند المرور */
+}
+
+.service-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 1.5rem auto; /* توسيط ومسافة أكبر أسفل الأيقونة */
+    background-color: var(--primary-color); /* لون خلفية الأيقونة */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color); /* لون الأيقونة الداخلية (إذا استخدمت أيقونة خطية) */
+    font-size: 2rem; /* حجم الأيقونة */
+    /* --- مهم: استبدل هذا بخلفية صورة الأيقونة أو كود أيقونة خطية --- */
+    /* مثال مؤقت جداً بشكل حرف */
+    line-height: 65px;
+    font-weight: bold;
+    position: relative; /* للتوضيح */
+    overflow: hidden; /* للتوضيح */
+}
+/* مثال لأيقونة تكييف بسيطة (مؤقتة) */
+.service-item:nth-child(1) .service-icon::before { content: '❄️'; font-size: 2.5rem; }
+/* مثال لأيقونة جبس (مؤقتة) */
+.service-item:nth-child(2) .service-icon::before { content: '🏗️'; font-size: 2.5rem;}
+/* مثال لأيقونة سباكة (مؤقتة) */
+.service-item:nth-child(3) .service-icon::before { content: '🔧'; font-size: 2.5rem;}
+/* مثال لأيقونة كهرباء (مؤقتة) */
+.service-item:nth-child(4) .service-icon::before { content: '⚡'; font-size: 2.5rem;}
+/* مثال لأيقونة أعمال فنية (مؤقتة) */
+.service-item:nth-child(5) .service-icon::before { content: '🎨'; font-size: 2.5rem;}
+/* مثال لأيقونة استشارات فنية (مؤقتة) */
+.service-item:nth-child(6) .service-icon::before { content: '💡'; font-size: 2.5rem;}
+
+
+.service-item h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem; /* حجم أكبر لعنوان الخدمة */
+    color: var(--primary-color);
+}
+
+.service-item p {
+    font-size: 0.95rem;
+    color: #555;
+    flex-grow: 1; /* يجعل الفقرة تملأ المساحة المتبقية */
+    margin-bottom: 1.5rem; /* مسافة قبل الزر (إذا أضفناه) */
+}
+
+/* --- قسم معرض الأعمال --- */
+#portfolio {
+    padding: 80px 0;
+    background-color: #fff; /* خلفية بيضاء لهذا القسم */
+}
+
+#portfolio h2 {
+    margin-bottom: 1.5rem; /* تقليل المسافة أسفل العنوان الرئيسي للمعرض */
+}
+
+#portfolio .text-center { /* لتوسيط الفقرة الوصفية */
+    text-align: center;
+    max-width: 700px; /* تحديد عرض الفقرة */
+    margin: 0 auto 3rem auto; /* توسيط أفقي ومسافة سفلية */
+    color: #555;
+}
+
+
+.gallery-grid {
+    display: grid;
+    /* عرض 3 أعمدة على الشاشات الكبيرة، 2 على المتوسطة، 1 على الصغيرة */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px; /* المسافة بين الصور */
+}
+
+.gallery-item {
+    border-radius: 8px; /* حواف دائرية */
+    overflow: hidden; /* لإخفاء أي أجزاء من الصورة تتجاوز الحدود الدائرية */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* لإضافة محتوى فوق الصورة لاحقًا إذا أردت */
+}
+
+.gallery-item:hover {
+    transform: scale(1.03); /* تكبير بسيط عند المرور */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* ظل أكبر عند المرور */
+}
+
+.gallery-item img {
+    width: 100%; /* جعل الصورة تملأ عرض الحاوية */
+    height: 250px; /* ارتفاع ثابت للصور لجعلها متناسقة (اختياري) */
+    object-fit: cover; /* قص الصورة لتناسب الحجم المحدد دون تشويه */
+    display: block; /* إزالة المسافة البيضاء السفلية */
+}
+
+/* (اختياري) تنسيق الوصف إذا أضفته داخل .gallery-item */
+/*
+.gallery-item .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 35, 66, 0.8); // خلفية شفافة
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0; // إخفاء الوصف مبدئيًا
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .caption {
+    opacity: 1; // إظهار الوصف عند المرور
+}
+*/
+
+
+/* --- قسم اتصل بنا --- */
+#contact {
+    /* padding: 80px 0;  -- إزالة التكرار، القسم يأخذ padding من .content-section */
+    /* background-color: var(--light-bg); -- أصبحت alt-bg */
+}
+
+/* تطبيق الخلفية الرمادية الفاتحة لقسم الاتصال */
+#contact.alt-bg {
+    background-color: var(--light-bg);
+}
+
+
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.contact-details li {
+    margin-bottom: 1.5rem; /* زيادة المسافة بين عناصر الاتصال */
+    font-size: 1.1rem; /* تكبير الخط قليلاً */
+    display: flex; /* لترتيب الأيقونة والنص */
+    align-items: center; /* محاذاة رأسية */
+}
+
+.contact-details li i.icon { /* تنسيق مبدئي للأيقونات */
+    display: inline-flex; /* تعديل لاستخدام flex لتوسيط المحتوى الداخلي */
+    align-items: center;
+    justify-content: center;
+    width: 35px; /* تكبير حجم حاوية الأيقونة */
+    height: 35px;
+    margin-left: 15px; /* المسافة بين الأيقونة والنص */
+    /* --- استبدل هذا بأيقونات فعلية --- */
+    background-color: var(--secondary-color); /* لون خلفية مؤقت */
+    border-radius: 50%;
+    color: white;
+    font-style: normal; /* إزالة الميلان الافتراضي لـ <i> */
+    font-size: 1.1rem; /* حجم الرمز الداخلي */
+}
+/* أيقونات بسيطة جداً (مؤقتة) - يمكنك استبدالها بأيقونات حقيقية من FontAwesome مثلاً */
+.contact-details li i.phone-icon::before { content: '📞'; }
+.contact-details li i.email-icon::before { content: '✉️'; }
+.contact-details li i.location-icon::before { content: '📍'; }
+
+
+.contact-details li strong {
+    margin-left: 8px;
+    color: var(--primary-color);
+}
+
+.contact-details li a {
+    color: var(--text-color); /* لون أغمق لرابط الاتصال */
+    word-break: break-word; /* للسماح بكسر النص الطويل مثل الايميل */
+}
+.contact-details li a:hover {
+    color: var(--secondary-color);
+}
+
+.contact-cta {
+    text-align: center;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+}
+.contact-cta p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem; /* إضافة مسافة أسفل الفقرة */
+}
+.cta-button.secondary { /* تصميم زر ثانوي */
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 12px 30px;
+    box-shadow: none;
+}
+.cta-button.secondary:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* --- الفوتر --- */
+footer {
+    background-color: var(--dark-bg); /* استخدام اللون الداكن للفوتر */
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px; /* مسافة أكبر فوق الفوتر */
+}
+
+footer p {
+    margin: 0 0 5px 0; /* مسافة بسيطة بين الفقرات في الفوتر */
+    font-size: 0.9rem;
+    color: #ccc; /* لون أفتح قليلاً للحقوق */
+}
+footer a {
+    color: var(--accent-color); /* اللون الذهبي الفاتح للروابط في الفوتر */
+}
+footer a:hover {
+    color: #fff;
+}
+
+
+/* --- التجاوبية (تحسينات بسيطة) --- */
+@media (max-width: 992px) {
+    .hero-section h2 { font-size: 2.8rem; }
+    .hero-section p { font-size: 1.1rem; }
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+    h2 { font-size: 2rem; margin-bottom: 2rem; }
+    .container { width: 95%; }
+
+    header .container {
+        flex-direction: column;
+        align-items: center; /* توسيط العناصر */
+    }
+    .logo { margin-bottom: 1rem; text-align: center; }
+    nav { margin-top: 1rem; }
+    nav ul { justify-content: center; flex-wrap: wrap; } /* توسيط وتغليف الروابط */
+    nav ul li { margin: 5px 10px; } /* تعديل الهوامش */
+    nav ul li a::after { display: none; } /* إخفاء الخط السفلي في الموبايل */
+
+
+    .hero-section { padding: 80px 0; min-height: 50vh;}
+    .hero-section h2 { font-size: 2.2rem; }
+    .hero-section p { font-size: 1rem; }
+    .cta-button { padding: 12px 25px; font-size: 1rem; }
+
+    .content-section { padding: 50px 0; }
+    .services-grid { grid-template-columns: 1fr; gap: 25px;} /* عمود واحد في الشاشات الصغيرة */
+    .service-item { padding: 25px; }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تعديل طفيف للشاشات الأصغر */
+        gap: 15px;
+    }
+    .gallery-item img {
+        height: 200px; /* تقليل ارتفاع الصور على الشاشات الأصغر */
+    }
+
+    .contact-details li {
+        font-size: 1rem;
+        align-items: flex-start; /* محاذاة للأعلى في حال كان النص طويلاً */
+    }
+    .contact-details li i.icon {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        margin-left: 10px; /* تقليل المسافة */
+        flex-shrink: 0; /* منع الأيقونة من الانكماش */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h2 { font-size: 1.8rem; }
+    .hero-section p { font-size: 0.9rem; }
+    .logo h1 { font-size: 1.5rem;}
+    h2 { font-size: 1.8rem; }
+    .gallery-grid { grid-template-columns: 1fr; } /* عمود واحد فقط */
+}
